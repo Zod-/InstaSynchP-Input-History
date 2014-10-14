@@ -1,7 +1,9 @@
 InstaSynchP-Input-History
 =========================
 
-Plugin to browse your chat history
+Use up and down arrow keys to browse your sent messages.
+
+<iframe width="446" height="329" src="https://cdn.rawgit.com/Zod-/InstaSynchP-Input-History/master/InputHistory.webm" frameborder="0" allowfullscreen></iframe>
 
 License
 -----------
