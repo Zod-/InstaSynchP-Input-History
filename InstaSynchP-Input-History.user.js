@@ -2,7 +2,7 @@
 // @name        InstaSynchP Input History
 // @namespace   InstaSynchP
 // @description Plugin to browse your chat history
-// @version     1.0.2
+// @version     1.0.3
 // @author      Zod-
 // @source      https://github.com/Zod-/InstaSynchP-Input-History
 // @license     GPL-3.0
@@ -17,9 +17,9 @@
 // @require     https://greasyfork.org/scripts/5647-instasynchp-library/code/InstaSynchP%20Library.js
 // ==/UserScript==
 
-function Plugin() {
+function InputHistory(version) {
     "use strict";
-    this.version = 1;
+    this.version = version;
     this.history = [''];
     this.index = 0;
 }
@@ -28,7 +28,7 @@ function ref() {
     return window.plugins.inputHistory;
 }
 
-Plugin.prototype = {
+InputHistory.prototype = {
     get history() {
         return this._history;
     },
@@ -44,7 +44,7 @@ Plugin.prototype = {
     }
 };
 
-Plugin.prototype.executeOnce = function () {
+InputHistory.prototype.executeOnce = function () {
     "use strict";
     var th = ref();
     events.on('SendChat', function (event, message) {
@@ -66,16 +66,16 @@ Plugin.prototype.executeOnce = function () {
     });
 };
 
-Plugin.prototype.writeHistory = function () {
+InputHistory.prototype.writeHistory = function () {
     "use strict";
     var len = this.history[this.index].length;
     $('#chat input').val(this.history[this.index]);
     $('#chat input')[0].setSelectionRange(len, len);
 };
 
-Plugin.prototype.resetVariables = function () {
+InputHistory.prototype.resetVariables = function () {
     "use strict";
     this.index = 0;
 };
 window.plugins = window.plugins || {};
-window.plugins.inputHistory = new Plugin();
+window.plugins.inputHistory = new InputHistory("1.0.3");
