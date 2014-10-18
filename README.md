@@ -3,7 +3,9 @@ InstaSynchP-Input-History
 
 Use up and down arrow keys to browse your sent messages.
 
-Example webm: https://cdn.rawgit.com/Zod-/InstaSynchP-Input-History/master/InputHistory.webm
+Example
+-------
+https://cdn.rawgit.com/Zod-/InstaSynchP-Input-History/master/InputHistory.webm
 
 License
 -----------

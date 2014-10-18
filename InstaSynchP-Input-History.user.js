@@ -2,7 +2,7 @@
 // @name        InstaSynchP Input History
 // @namespace   InstaSynchP
 // @description Plugin to browse your chat history
-// @version     1.0.4
+// @version     1.0.5
 // @author      Zod-
 // @source      https://github.com/Zod-/InstaSynchP-Input-History
 // @license     GPL-3.0
@@ -41,6 +41,10 @@ InputHistory.prototype = {
     },
     set index(value) {
         this._index = value;
+        //disable autocomplete when browsing history
+        if (window.plugins.autocomplete) {
+            window.plugins.autocomplete.enabled = (this.index === 0);
+        }
     }
 };
 
@@ -56,13 +60,35 @@ InputHistory.prototype.executeOnce = function () {
         th.history.splice(1, 0, message);
         th.index = 0;
     });
+
+    function checkAutocomplete() {
+        if (window.plugins.autocomplete && window.plugins.autocomplete.menuActive && th.index === 0) {
+            return true;
+        }
+        return false;
+    }
+
     events.on('InputKeydown[38]', function (event, message) {
+        if (checkAutocomplete()) {
+            return;
+        }
         th.index += 1;
         th.writeHistory();
     });
     events.on('InputKeydown[40]', function (event, message) {
+        if (checkAutocomplete()) {
+            return;
+        }
         th.index = (th.index === 0) ? th.history.length - 1 : th.index - 1;
         th.writeHistory();
+    });
+    events.on('InputKeydown', function () {
+        if (event.keyCode !== 40 && event.keyCode !== 38) {
+            //enable autocomplete when changing stuff in history
+            if (window.plugins.autocomplete) {
+                window.plugins.autocomplete.enabled = true;
+            }
+        }
     });
 };
 
@@ -78,4 +104,4 @@ InputHistory.prototype.resetVariables = function () {
     this.index = 0;
 };
 window.plugins = window.plugins || {};
-window.plugins.inputHistory = new InputHistory("1.0.4");
+window.plugins.inputHistory = new InputHistory("1.0.5");
