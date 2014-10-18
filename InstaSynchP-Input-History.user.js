@@ -2,7 +2,7 @@
 // @name        InstaSynchP Input History
 // @namespace   InstaSynchP
 // @description Plugin to browse your chat history
-// @version     1.0.5
+// @version     1.0.6
 // @author      Zod-
 // @source      https://github.com/Zod-/InstaSynchP-Input-History
 // @license     GPL-3.0
@@ -82,7 +82,7 @@ InputHistory.prototype.executeOnce = function () {
         th.index = (th.index === 0) ? th.history.length - 1 : th.index - 1;
         th.writeHistory();
     });
-    events.on('InputKeydown', function () {
+    events.on('InputKeydown', function (event) {
         if (event.keyCode !== 40 && event.keyCode !== 38) {
             //enable autocomplete when changing stuff in history
             if (window.plugins.autocomplete) {
@@ -104,4 +104,4 @@ InputHistory.prototype.resetVariables = function () {
     this.index = 0;
 };
 window.plugins = window.plugins || {};
-window.plugins.inputHistory = new InputHistory("1.0.5");
+window.plugins.inputHistory = new InputHistory("1.0.6");
