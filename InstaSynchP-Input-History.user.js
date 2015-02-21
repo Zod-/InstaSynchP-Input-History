@@ -2,7 +2,7 @@
 // @name        InstaSynchP Input History
 // @namespace   InstaSynchP
 // @description Plugin to browse your chat history
-// @version     1.1
+// @version     1.1.1
 // @author      Zod-
 // @source      https://github.com/Zod-/InstaSynchP-Input-History
 // @license     MIT
@@ -14,7 +14,7 @@
 // @grant       none
 // @run-at      document-start
 
-// @require     https://greasyfork.org/scripts/5647-instasynchp-library/code/InstaSynchP%20Library.js
+// @require     https://greasyfork.org/scripts/5647-instasynchp-library/code/InstaSynchP%20Library.js?version=37716
 // ==/UserScript==
 
 function InputHistory(version) {
@@ -37,7 +37,7 @@ InputHistory.prototype = {
         return this._index % this._history.length;
     },
     set index(value) {
-        if(value < 0){
+        if (value < 0) {
             value = this._history.length - 1;
         }
         this._index = value;
@@ -87,8 +87,8 @@ InputHistory.prototype.executeOnce = function () {
 InputHistory.prototype.writeHistory = function () {
     "use strict";
     var len = this.history[this.index].length;
-    $('#chat input').val(this.history[this.index]);
-    $('#chat input')[0].setSelectionRange(len, len);
+    $('#cin').val(this.history[this.index]);
+    $('#cin')[0].setSelectionRange(len, len);
 };
 
 InputHistory.prototype.resetVariables = function () {
@@ -96,4 +96,4 @@ InputHistory.prototype.resetVariables = function () {
     this.index = 0;
 };
 window.plugins = window.plugins || {};
-window.plugins.inputHistory = new InputHistory('1.1');
+window.plugins.inputHistory = new InputHistory('1.1.1');
