@@ -2,15 +2,13 @@
 // @name        InstaSynchP Input History
 // @namespace   InstaSynchP
 // @description Plugin to browse your chat history
-// @version     1.1.1
+// @version     1.1.2
 // @author      Zod-
 // @source      https://github.com/Zod-/InstaSynchP-Input-History
 // @license     MIT
 
-// @include     http://*.instasynch.com/*
-// @include     http://instasynch.com/*
-// @include     http://*.instasync.com/*
-// @include     http://instasync.com/*
+// @include     *://instasync.com/r/*
+// @include     *://*.instasync.com/r/*
 // @grant       none
 // @run-at      document-start
 
@@ -96,4 +94,4 @@ InputHistory.prototype.resetVariables = function () {
     this.index = 0;
 };
 window.plugins = window.plugins || {};
-window.plugins.inputHistory = new InputHistory('1.1.1');
+window.plugins.inputHistory = new InputHistory('1.1.2');
